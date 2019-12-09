@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_circle">
+
+    <fragment
+        android:id="@+id/nav_circle"
+        android:name="com.elvin.navdrawerdemo.ui.circle.CircleFragment"
+        android:label="@string/menu_circle"
+        tools:layout="@layout/fragment_interest" />
+
+    <fragment
+        android:id="@+id/nav_interest"
+        android:name="com.elvin.navdrawerdemo.ui.interest.InterestFragment"
+        android:label="@string/menu_interest"
+        tools:layout="@layout/fragment_circle" />
+
+    <fragment
+        android:id="@+id/nav_recycler"
+        android:name="com.elvin.navdrawerdemo.ui.recycler.RecyclerFragment"
+        android:label="@string/menu_recycler"
+        tools:layout="@layout/fragment_recycler" />
+</navigation>
