@@ -1,4 +1,4 @@
-package com.elvin.navdrawerdemo;
+package com.elvin.navdrawerdemo.util;
 
 /**
  * @author Elvin Shrestha on 09/12/19

@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.elvin.navdrawerdemo.Operation;
+import com.elvin.navdrawerdemo.util.Operation;
 import com.elvin.navdrawerdemo.R;
 
 public class CircleFragment extends Fragment implements View.OnClickListener {
