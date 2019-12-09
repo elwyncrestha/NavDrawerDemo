@@ -4,32 +4,39 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
+import com.elvin.navdrawerdemo.Operation;
 import com.elvin.navdrawerdemo.R;
 
-public class InterestFragment extends Fragment {
+public class InterestFragment extends Fragment implements View.OnClickListener {
 
-    private InterestViewModel interestViewModel;
+    EditText etPrincipal;
+    EditText etTime;
+    EditText etRate;
+    Button btnCalculateSI;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        interestViewModel =
-                ViewModelProviders.of(this).get(InterestViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_circle, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        interestViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        View view = inflater.inflate(R.layout.fragment_interest, container, false);
+        this.etPrincipal = view.findViewById(R.id.etPrincipal);
+        this.etTime = view.findViewById(R.id.etTime);
+        this.etRate = view.findViewById(R.id.etRate);
+        this.btnCalculateSI = view.findViewById(R.id.btnCalculateSI);
+        this.btnCalculateSI.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        float principal = Float.parseFloat(etPrincipal.getText().toString());
+        float time = Float.parseFloat(etTime.getText().toString());
+        float rate = Float.parseFloat(etRate.getText().toString());
+        Toast.makeText(getActivity(), "Simple Interest is: " + Operation.calculateSI(principal, time, rate), Toast.LENGTH_SHORT).show();
     }
 }

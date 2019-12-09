@@ -4,32 +4,36 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
+import com.elvin.navdrawerdemo.Operation;
 import com.elvin.navdrawerdemo.R;
 
-public class CircleFragment extends Fragment {
+public class CircleFragment extends Fragment implements View.OnClickListener {
 
-    private CircleViewModel circleViewModel;
+    private EditText etRadius;
+    private Button btnCalculateArea;
+
+    public CircleFragment() {
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        circleViewModel =
-                ViewModelProviders.of(this).get(CircleViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_interest, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        circleViewModel.getText().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_circle, container, false);
+        this.etRadius = view.findViewById(R.id.etRadius);
+        this.btnCalculateArea = view.findViewById(R.id.btnCalculateArea);
+        this.btnCalculateArea.setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getActivity(), "Area of circle is: " + Operation.areaOfCircle(Float.parseFloat(this.etRadius.getText().toString())), Toast.LENGTH_SHORT).show();
     }
 }
